@@ -64,3 +64,10 @@ The first element in the list is number 1."
     (reduce lst :initial-value `((())))
     nreverse
     cdr))
+
+(defun encode (lst)
+  "Run-length encoding of a list."
+  (->> lst
+    pack
+    (mapcar (lambda (xs) `(,(length xs) ,(car xs))))))
+
