@@ -172,3 +172,11 @@ Start counting the elements with 1."
 (defun range (from to)
   "Create a list containing all integers within a given range."
   (loop for i from from upto to collect i))
+
+(defun rnd-select (lst n)
+  "Extract a given number of randomly selected elements from a list."
+  (if (zerop n)
+      nil
+      (let ((rnd (-> lst length random 1+)))
+        (cons (element-at lst rnd)
+              (rnd-select (remove-at lst rnd) (1- n))))))
