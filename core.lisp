@@ -53,3 +53,14 @@ The first element in the list is number 1."
             (cons x r)))
     (reduce lst :initial-value (list (car lst)))
     nreverse))
+
+(defun pack (lst)
+  "If a list contains repeated elements they should be placed in separate sublists."
+  (-> (lambda (r x)
+        (destructuring-bind ((v . vs) . others) r
+          (if (eq v x)
+              (cons (cons x (cons v vs)) others)
+              (cons (list x) (cons (cons v vs) others)))))
+    (reduce lst :initial-value `((())))
+    nreverse
+    cdr))
