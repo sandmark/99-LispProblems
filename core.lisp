@@ -158,3 +158,13 @@ Start counting the elements with 1."
         for x in lst
         when (not (= i k))
           collect x))
+
+(defun insert-at (v xs n)
+  "Insert an element at a given position into a list."
+  (loop for i from 1
+        for x in xs
+        if (= i n)
+          collect (list v x) into r
+        else
+          collect x into r
+        finally (return (my-flatten r))))
