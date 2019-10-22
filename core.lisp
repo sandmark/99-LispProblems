@@ -81,3 +81,11 @@ The first element in the list is number 1."
                     v
                     xs))))))
 
+(defun decode (lst)
+  "Decode a run-length encoded list."
+  (->> lst
+    (mapcan (lambda (xs)
+              (if (atom xs)
+                  (list xs)
+                  (make-list (car xs) :initial-element (cadr xs)))))))
+
