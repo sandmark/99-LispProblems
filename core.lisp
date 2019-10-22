@@ -34,3 +34,8 @@ The first element in the list is number 1."
 (defun my-reverse (lst)
   "Reverse a list."
   (reduce (lambda (x y) (cons y x)) lst :initial-value nil))
+
+(defun palindrome-p (lst)
+  "Find out whether a list is a palindrome."
+  (equal lst (reverse lst)))
+
