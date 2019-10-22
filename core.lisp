@@ -45,3 +45,11 @@ The first element in the list is number 1."
       (mapcan #'my-flatten lst)
       (list lst)))
 
+(defun compress (lst)
+  "Eliminate consecutive duplicates of list elements."
+  (-> (lambda (r x)
+        (if (eq (car r) x)
+            r
+            (cons x r)))
+    (reduce lst :initial-value (list (car lst)))
+    nreverse))
