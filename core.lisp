@@ -19,3 +19,10 @@
   (-> (length lst)
     (- 2)
     (nthcdr lst)))
+
+(defun element-at (lst k)
+  "Find the K'th element of a list.
+The first element in the list is number 1."
+  (if (= k 1)
+      (car lst)
+      (element-at (cdr lst) (1- k))))
