@@ -30,3 +30,7 @@ The first element in the list is number 1."
 (defun my-length (lst)
   "Find the number of elements of a list."
   (->> lst (mapcar (constantly 1)) (reduce #'+)))
+
+(defun my-reverse (lst)
+  "Reverse a list."
+  (reduce (lambda (x y) (cons y x)) lst :initial-value nil))
