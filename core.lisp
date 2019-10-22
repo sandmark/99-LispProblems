@@ -151,3 +151,10 @@ Start counting the elements with 1."
       (split lst)
       nreverse
       (apply #'append))))
+
+(defun remove-at (lst k)
+  "Remove the K'th element from a list."
+  (loop for i from 1
+        for x in lst
+        when (not (= i k))
+          collect x))
