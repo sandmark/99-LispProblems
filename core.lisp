@@ -71,3 +71,13 @@ The first element in the list is number 1."
     pack
     (mapcar (lambda (xs) `(,(length xs) ,(car xs))))))
 
+(defun encode-modified (lst)
+  "Modified run-length encoding."
+  (->> lst
+    encode
+    (mapcar (lambda (xs)
+              (destructuring-bind (n v) xs
+                (if (= 1 n)
+                    v
+                    xs))))))
+
