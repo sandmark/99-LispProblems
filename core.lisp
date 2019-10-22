@@ -89,3 +89,19 @@ The first element in the list is number 1."
                   (list xs)
                   (make-list (car xs) :initial-element (cadr xs)))))))
 
+(defun encode-direct (lst)
+  "Run-length encoding of a list (direct solution.)
+Implement the so-called run-length encoding data compression method directly.
+I.e. don't explitly create the sublists containing the duplicates,
+as in problem P09, but only count them. As in problem P11,
+simplify the result list by replacing the singleton lists (1 X) by X."
+  (destructuring-bind (first . rest) lst
+    (flet ((->run-length (r x)
+             (destructuring-bind ((count elm) . others) r
+               (if (eq elm x)
+                   (cons (list (1+ count) elm) others)
+                   (cons (list 1 x) (cons (list count elm) others)))))
+           (simplify (x)
+             (if (= 1 (car x)) (cadr x) x)))
+      (->> (reduce #'->run-length rest :initial-value `((0 ,first)))
+        (mapcar #'simplify)))))
