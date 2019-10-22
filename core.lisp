@@ -131,3 +131,13 @@ simplify the result list by replacing the singleton lists (1 X) by X."
           collect x into suf
         finally
            (return (list pre suf))))
+
+(defun slice (lst i k)
+  "Extract a slice from a list.
+Given two indices, I and K, the slice is the list containing the elements
+between the I'th and K'th element of the original list (both limits included).
+Start counting the elements with 1."
+  (loop for n from 1
+        for x in lst
+        when (>= k n i)
+          collect x))
