@@ -109,3 +109,7 @@ simplify the result list by replacing the singleton lists (1 X) by X."
 (defun dupli (lst)
   "Duplicate the elements of a list."
   (mapcan (lambda (x) (make-list 2 :initial-element x)) lst))
+
+(defun repli (lst n)
+  "Replicate the elements of a list a given number of times."
+  (mapcan (lambda (x) (make-list n :initial-element x)) lst))
