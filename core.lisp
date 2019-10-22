@@ -105,3 +105,7 @@ simplify the result list by replacing the singleton lists (1 X) by X."
              (if (= 1 (car x)) (cadr x) x)))
       (->> (reduce #'->run-length rest :initial-value `((0 ,first)))
         (mapcar #'simplify)))))
+
+(defun dupli (lst)
+  "Duplicate the elements of a list."
+  (mapcan (lambda (x) (make-list 2 :initial-element x)) lst))
