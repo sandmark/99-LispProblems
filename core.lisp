@@ -56,14 +56,14 @@ The first element in the list is number 1."
 
 (defun pack (lst)
   "If a list contains repeated elements they should be placed in separate sublists."
-  (-> (lambda (r x)
-        (destructuring-bind ((v . vs) . others) r
-          (if (eq v x)
-              (cons (cons x (cons v vs)) others)
-              (cons (list x) (cons (cons v vs) others)))))
-    (reduce lst :initial-value `((())))
-    nreverse
-    cdr))
+  (destructuring-bind (fst . rest) lst
+    (-> (lambda (r x)
+         (destructuring-bind ((v . vs) . others) r
+           (if (eq v x)
+               (cons (cons x (cons v vs)) others)
+               (cons (list x) (cons (cons v vs) others)))))
+      (reduce rest :initial-value `((,fst)))
+     nreverse)))
 
 (defun encode (lst)
   "Run-length encoding of a list."
