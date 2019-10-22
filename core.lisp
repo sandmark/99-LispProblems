@@ -141,3 +141,13 @@ Start counting the elements with 1."
         for x in lst
         when (>= k n i)
           collect x))
+
+(defun rotate (lst n)
+  "Rotate a list N places to the left."
+  (let ((splitter (if (or (zerop n) (plusp n))
+                      n
+                      (+ (length lst) n))))
+    (->> splitter
+      (split lst)
+      nreverse
+      (apply #'append))))
