@@ -120,3 +120,14 @@ simplify the result list by replacing the singleton lists (1 X) by X."
         for x in lst
         when (not (zerop (rem i n)))
           collect x))
+
+(defun split (lst n)
+  "Split a list into two parts; the length of the first part is given."
+  (loop for x in lst
+        for i from 0
+        if (< i n)
+          collect x into pre
+        else
+          collect x into suf
+        finally
+           (return (list pre suf))))
