@@ -26,3 +26,7 @@ The first element in the list is number 1."
   (if (= k 1)
       (car lst)
       (element-at (cdr lst) (1- k))))
+
+(defun my-length (lst)
+  "Find the number of elements of a list."
+  (->> lst (mapcar (constantly 1)) (reduce #'+)))
