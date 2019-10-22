@@ -39,3 +39,9 @@ The first element in the list is number 1."
   "Find out whether a list is a palindrome."
   (equal lst (reverse lst)))
 
+(defun my-flatten (lst)
+  "Flatten a nested list structure."
+  (if (listp lst)
+      (mapcan #'my-flatten lst)
+      (list lst)))
+
