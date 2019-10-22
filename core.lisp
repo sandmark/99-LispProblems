@@ -13,3 +13,9 @@
   (-> (length lst)
     1-
     (nth lst)))
+
+(defun my-but-last (lst)
+  "Find the last but one box of a list."
+  (-> (length lst)
+    (- 2)
+    (nthcdr lst)))
