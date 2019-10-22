@@ -168,3 +168,7 @@ Start counting the elements with 1."
         else
           collect x into r
         finally (return (my-flatten r))))
+
+(defun range (from to)
+  "Create a list containing all integers within a given range."
+  (loop for i from from upto to collect i))
