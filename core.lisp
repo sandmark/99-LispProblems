@@ -180,3 +180,8 @@ Start counting the elements with 1."
       (let ((rnd (-> lst length random 1+)))
         (cons (element-at lst rnd)
               (rnd-select (remove-at lst rnd) (1- n))))))
+
+(defun lotto-select (n m)
+  "Lotto: Draw N different random numbers from the set 1..M."
+  (-> (range 1 m)
+    (rnd-select n)))
