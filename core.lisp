@@ -185,3 +185,7 @@ Start counting the elements with 1."
   "Lotto: Draw N different random numbers from the set 1..M."
   (-> (range 1 m)
     (rnd-select n)))
+
+(defun rnd-permu (lst)
+  "Generate a random permutation of the elements of a list."
+  (rnd-select lst (length lst)))
