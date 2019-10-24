@@ -189,3 +189,25 @@ Start counting the elements with 1."
 (defun rnd-permu (lst)
   "Generate a random permutation of the elements of a list."
   (rnd-select lst (length lst)))
+
+(defun combination (k lst)
+  "Generate the combinations of K distinct objects chosen from the N elements of a list.
+In how many ways can a committee of 3 be chosen from a group of 12 people?
+We all know that there are C(12,3) = 220 possibilities (C(N,K) denotes
+the well-known binomial coefficients). For pure mathematicians, this result may be great.
+But we want to really generate all the possibilities in a list."
+  ;; from https://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
+  (let ((current (make-list k))
+        (result nil))
+    (labels ((rec (start end index)
+               (if (= index k)
+                   (push (copy-list current) result)
+                   (loop for i from start
+                         while (and (<= i end)
+                                    (>= (- end (1+ i))
+                                        (- k index)))
+                         do (setf (nth index current) (nth i lst))
+                            (rec (1+ i) end (1+ index))))))
+      (rec 0 (1+ (length lst)) 0)
+      (nreverse result))))
+
