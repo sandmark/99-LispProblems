@@ -271,3 +271,10 @@ But we want to really generate all the possibilities in a list."
                    (t           (next)
                                 (rec n r))))))
       (nreverse (rec n nil)))))
+
+(defun prime-factors-mult (n)
+  "Determine the prime factors of a given positive integer (2)."
+  (->> n
+    prime-factors
+    encode
+    (mapcar #'nreverse)))
