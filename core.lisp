@@ -234,3 +234,13 @@ But we want to really generate all the possibilities in a list."
                 when (zerop (mod n i))
                   collect i)))
     (= 2 (length divisibles))))
+
+(defun my-gcd (x y)
+  "Determine the greatest common divisor of two positive integer numbers."
+  ;; Euclidean Algorithm
+  (if (< x y)
+      (my-gcd y x)
+      (let ((reminder (rem x y)))
+        (if (zerop reminder)
+            y
+            (my-gcd y reminder)))))
