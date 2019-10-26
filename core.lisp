@@ -278,3 +278,10 @@ But we want to really generate all the possibilities in a list."
     prime-factors
     encode
     (mapcar #'nreverse)))
+
+(defun totient-phi-improved (m)
+  "Culculate Euler's totient function phi(m) (improved)."
+  (if (= m 1)
+      1
+      (apply #'* (loop for (p m) in (prime-factors-mult m)
+                       collect (* (1- p) (expt p (1- m)))))))
