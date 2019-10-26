@@ -214,3 +214,15 @@ But we want to really generate all the possibilities in a list."
 (defun lsort (lst)
   "Sorting a list of lists according to length of sublists"
   (sort lst #'< :key #'length))
+
+(defun lfsort (lst)
+  "Sorting a list of lists according to their length frequency of sublists."
+  (let ((freq (make-hash-table)))
+    (loop for x in lst
+          do (let ((key (length x)))
+               (multiple-value-bind (val set?) (gethash key freq)
+                 (if set?
+                     (setf (gethash key freq) (1+ val))
+                     (setf (gethash key freq) 1)))))
+    (flet ((lookup (x) (gethash (length x) freq)))
+      (sort lst #'< :key #'lookup))))
