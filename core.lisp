@@ -211,3 +211,6 @@ But we want to really generate all the possibilities in a list."
       (rec 0 (1+ (length lst)) 0)
       (nreverse result))))
 
+(defun lsort (lst)
+  "Sorting a list of lists according to length of sublists"
+  (sort lst #'< :key #'length))
