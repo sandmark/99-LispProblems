@@ -226,3 +226,11 @@ But we want to really generate all the possibilities in a list."
                      (setf (gethash key freq) 1)))))
     (flet ((lookup (x) (gethash (length x) freq)))
       (sort lst #'< :key #'lookup))))
+
+(defun is-prime (n)
+  "Determine whether a given integer number is prime."
+  (let ((divisibles
+          (loop for i from n downto 1
+                when (zerop (mod n i))
+                  collect i)))
+    (= 2 (length divisibles))))
