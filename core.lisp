@@ -248,3 +248,9 @@ But we want to really generate all the possibilities in a list."
 (defun coprime (x y)
   "Determine whether two positive integer numbers are coprime."
   (= 1 (my-gcd x y)))
+
+(defun totient-phi (n)
+  "Calculate Euler's totient function phi(m)."
+  (->> (range 1 n)
+    (remove-if-not (lambda (x) (coprime x n)))
+    length))
