@@ -244,3 +244,7 @@ But we want to really generate all the possibilities in a list."
         (if (zerop reminder)
             y
             (my-gcd y reminder)))))
+
+(defun coprime (x y)
+  "Determine whether two positive integer numbers are coprime."
+  (= 1 (my-gcd x y)))
