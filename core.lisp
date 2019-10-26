@@ -254,3 +254,20 @@ But we want to really generate all the possibilities in a list."
   (->> (range 1 n)
     (remove-if-not (lambda (x) (coprime x n)))
     length))
+
+(defun prime-factors (n)
+  "Determine the prime factors of a given positive integer."
+  (let ((prime 2))
+    (labels ((next ()
+               (loop for i from (incf prime)
+                     when (is-prime i)
+                       do (return)))
+             (rec (n r)
+               (let ((rem (rem n prime))
+                     (div (/ n prime)))
+                 (cond
+                   ((= div 1)   (cons prime r))
+                   ((zerop rem) (rec div (cons prime r)))
+                   (t           (next)
+                                (rec n r))))))
+      (nreverse (rec n nil)))))
