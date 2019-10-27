@@ -291,3 +291,10 @@ But we want to really generate all the possibilities in a list."
   (->> (range start end)
     (remove-if #'evenp)
     (remove-if-not #'is-prime)))
+
+(defun goldbach (n)
+  (let ((combs (->> (prime-range 2 n)
+                 (combination 2))))
+    (loop for (x y) in combs
+          when (= n (+ x y))
+            return (list x y))))
