@@ -289,4 +289,5 @@ But we want to really generate all the possibilities in a list."
 
 (defun prime-range (start end)
   (->> (range start end)
+    (remove-if #'evenp)
     (remove-if-not #'is-prime)))
