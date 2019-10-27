@@ -286,3 +286,7 @@ But we want to really generate all the possibilities in a list."
       1
       (apply #'* (loop for (p m) in (prime-factors-mult m)
                        collect (* (1- p) (expt p (1- m)))))))
+
+(defun prime-range (start end)
+  (->> (range start end)
+    (remove-if-not #'is-prime)))
