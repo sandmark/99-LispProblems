@@ -3,6 +3,7 @@
 ;;;
 
 (in-package :cl-user)
+(ql:quickload :cl-99)
 (defpackage :cl-99
   (:use :cl :cl-arrows))
 (in-package :cl-99)

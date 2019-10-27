@@ -9,4 +9,4 @@
   :version "0.1"
   :author "sandmark"
   :license "Public Domain"
-  :depends-on (:cl-arrows "main.lisp"))
+  :depends-on (:cl-arrows))
